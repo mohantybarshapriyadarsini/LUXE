@@ -1,0 +1,96 @@
+/* Footer — premium redesign */
+.footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  background: var(--bg-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle gold glow top-left */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 200px;
+  background: radial-gradient(ellipse at top left, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 56px;
+  padding: 72px 40px;
+  position: relative;
+}
+
+.footer-logo {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 7px;
+  display: block;
+  margin-bottom: 14px;
+  /* Gold shimmer on logo */
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+
+.footer-brand p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-muted);
+  font-weight: 300;
+  max-width: 260px;
+}
+
+.footer-links h4 {
+  font-family: var(--sans);
+  font-size: 9.5px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.footer-links ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links li {
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-weight: 300;
+}
+.footer-links li:hover { color: var(--text-h); }
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 22px 40px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    padding: 48px 24px;
+  }
+  .footer-brand { grid-column: 1 / -1; }
+}

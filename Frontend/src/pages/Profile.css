@@ -1,0 +1,37 @@
+.profile-page { padding-top: 72px; padding-bottom: 96px; }
+.profile-layout { display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: start; margin-top: 8px; }
+
+.profile-sidebar { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px 24px; position: sticky; top: 92px; text-align: center; }
+.profile-avatar-lg { width: 72px; height: 72px; border-radius: 50%; background: var(--gold-gradient); color: #0b0b0c; font-size: 28px; font-weight: 600; font-family: var(--serif); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+.profile-name  { font-family: var(--serif); font-size: 18px; color: var(--text-h); margin-bottom: 4px; }
+.profile-email { font-size: 12px; color: var(--text-muted); margin-bottom: 24px; }
+.profile-nav { display: flex; flex-direction: column; gap: 6px; }
+.profile-nav-btn { width: 100%; padding: 11px 16px; background: transparent; border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); font-family: var(--sans); font-size: 12px; letter-spacing: 1px; cursor: pointer; text-align: left; transition: all 0.3s ease; }
+.profile-nav-btn:hover, .profile-nav-btn.active { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+
+.profile-content { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; }
+.profile-msg { padding: 12px 16px; background: var(--gold-dim); border: 1px solid rgba(212,175,55,0.3); border-radius: var(--radius); color: var(--gold); font-size: 13px; margin-bottom: 24px; }
+.profile-form h2, .profile-form h3 { font-size: 22px; margin-bottom: 28px; }
+.profile-form h3 { font-size: 18px; margin-top: 32px; margin-bottom: 20px; }
+.field-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.field-group label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+.field-group input { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-h); font-family: var(--sans); font-size: 14px; padding: 12px 16px; outline: none; transition: border-color 0.3s ease; }
+.field-group input:focus { border-color: var(--gold); }
+.disabled-input { opacity: 0.5; cursor: not-allowed; }
+.fields-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.checkbox-label { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text); cursor: pointer; }
+.checkbox-label input { accent-color: var(--gold); width: 16px; height: 16px; }
+
+.addresses-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 32px; }
+.address-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; position: relative; font-size: 13px; color: var(--text); line-height: 1.7; }
+.address-card.default { border-color: rgba(212,175,55,0.4); }
+.default-badge { position: absolute; top: 12px; right: 12px; background: var(--gold-dim); border: 1px solid rgba(212,175,55,0.3); color: var(--gold); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; }
+.addr-name { font-family: var(--serif); font-size: 15px; color: var(--text-h); margin-bottom: 4px; }
+.no-data { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+
+@media (max-width: 900px) {
+  .profile-layout { grid-template-columns: 1fr; }
+  .profile-sidebar { position: static; }
+  .addresses-list { grid-template-columns: 1fr; }
+  .fields-row { grid-template-columns: 1fr; }
+}

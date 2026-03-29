@@ -1,0 +1,152 @@
+/* ── Design Tokens ── */
+:root {
+  --gold: #d4af37;
+  --gold-light: #f0d060;
+  --gold-dark: #a8861a;
+  --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f0d060 50%, #a8861a 100%);
+  --gold-dim: rgba(212, 175, 55, 0.12);
+  --gold-glow: rgba(212, 175, 55, 0.25);
+
+  --bg: #0b0b0c;
+  --bg-card: #111113;
+  --bg-surface: #141416;
+  --bg-glass: rgba(14, 14, 16, 0.75);
+  --border: #222226;
+  --border-gold: rgba(212, 175, 55, 0.3);
+
+  --text: #9a9a9e;
+  --text-h: #f2ede4;
+  --text-muted: #4a4a50;
+
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+  --radius: 1px;
+  --radius-md: 4px;
+  --transition: 0.3s ease;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* ── Typography ── */
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  color: var(--text-h);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ── Layout ── */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gold gradient button */
+.btn-gold {
+  background: var(--gold-gradient);
+  color: #0b0b0c;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+}
+.btn-gold:hover {
+  box-shadow: 0 6px 32px rgba(212, 175, 55, 0.55);
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+.btn-gold:active { transform: translateY(0); }
+
+/* Outline button */
+.btn-outline {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--border-gold);
+}
+.btn-outline::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold-dim);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+.btn-outline:hover::after { opacity: 1; }
+
+/* ── Gold divider ── */
+.divider {
+  width: 48px;
+  height: 1px;
+  background: var(--gold-gradient);
+  margin: 14px auto;
+  border: none;
+}
+
+/* ── Section label ── */
+.section-label {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-family: var(--sans);
+  font-weight: 400;
+}
+
+/* ── Keyframe Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.anim-fade-up   { animation: fadeUp 0.8s ease both; }
+.anim-fade-in   { animation: fadeIn 0.6s ease both; }
+.anim-delay-1   { animation-delay: 0.15s; }
+.anim-delay-2   { animation-delay: 0.3s; }
+.anim-delay-3   { animation-delay: 0.45s; }
+.anim-delay-4   { animation-delay: 0.6s; }
