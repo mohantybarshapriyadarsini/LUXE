@@ -288,8 +288,8 @@ export default function Cart({ cart, onNavigate, onRemove, onUpdateQty, onClearC
                         </div>
                       )}
 
-                      {/* Reference input for UPI / Bank */}
-                      {paymentMethod === method.id && method.id !== 'cod' && (
+                      {/* Reference input for UPI / Bank only — not for Razorpay or COD */}
+                      {paymentMethod === method.id && method.id !== 'cod' && method.id !== 'razorpay' && (
                         <div className="field-group" style={{ marginTop: '12px' }}>
                           <label>{method.id === 'upi' ? 'UPI Transaction ID' : 'Bank UTR / Reference Number'}</label>
                           <input

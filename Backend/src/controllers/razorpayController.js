@@ -4,11 +4,16 @@ const Order    = require('../models/Order');
 
 const USD_TO_INR = parseFloat(process.env.USD_TO_INR) || 83.5;
 
-// Secret key stays in backend only — never sent to frontend
-const razorpay = new Razorpay({
-  key_id:     process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
+// Initialize lazily so missing keys don't crash server startup
+function getRazorpay() {
+  if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+    throw new Error('Razorpay keys not configured in environment variables');
+  }
+  return new Razorpay({
+    key_id:     process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+  });
+}
 
 // @POST /api/orders/razorpay/create
 // Creates a Razorpay order and a DB order, returns razorpay order id + key id
@@ -18,6 +23,7 @@ const createRazorpayOrder = async (req, res) => {
     if (!items || items.length === 0)
       return res.status(400).json({ message: 'No items in order' });
 
+    const razorpay     = getRazorpay();
     const totalPriceINR = Math.round(totalPrice * USD_TO_INR);
     const itemsWithINR  = items.map(i => ({ ...i, priceINR: Math.round(i.price * USD_TO_INR) }));
 
