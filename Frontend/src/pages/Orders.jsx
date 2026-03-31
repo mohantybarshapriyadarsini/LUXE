@@ -135,7 +135,6 @@ export default function Orders({ onNavigate }) {
                         {order.totalPriceINR ? `₹${order.totalPriceINR.toLocaleString('en-IN')}` : priceINR(order.totalPrice)}
                       </span>
                     </div>
-                    {/* Refund button — only for paid, non-cancelled, non-refunded orders */}
                     {order.isPaid && order.refundStatus === 'none' && order.status !== 'cancelled' && (
                       <button
                         className="refund-btn"
@@ -146,6 +145,20 @@ export default function Orders({ onNavigate }) {
                     )}
                   </div>
                 </div>
+
+                {/* Tracking History */}
+                {order.trackingHistory?.length > 0 && (
+                  <div className="tracking-history">
+                    <p className="tracking-label">📦 Tracking History</p>
+                    {order.trackingHistory.slice().reverse().map((t, i) => (
+                      <div key={i} className="tracking-entry">
+                        <span className="tracking-status">{t.status}</span>
+                        <span className="tracking-msg">{t.message}</span>
+                        <span className="tracking-time">{new Date(t.timestamp).toLocaleString('en-IN')}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
               </div>
             ))}

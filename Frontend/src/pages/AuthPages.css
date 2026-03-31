@@ -265,3 +265,106 @@
   .auth-card { padding: 36px 24px 32px; }
   .fields-row { grid-template-columns: 1fr; }
 }
+
+/* ── 3-tab login switcher ── */
+.login-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.login-tab {
+  flex: 1;
+  padding: 10px 8px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--text-muted);
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+.login-tab:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+.login-tab.active {
+  background: var(--gold-gradient);
+  color: #0b0b0c;
+  border-color: transparent;
+  font-weight: 600;
+}
+
+/* ── Step Indicator ── */
+.step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 28px;
+}
+.step-dot {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600; font-family: var(--sans);
+  border: 2px solid var(--border); color: var(--text-muted);
+  transition: all 0.3s ease; flex-shrink: 0;
+}
+.step-dot.active { background: var(--gold-gradient); border-color: transparent; color: #0b0b0c; }
+.step-line {
+  width: 60px; height: 2px; background: var(--border);
+  transition: background 0.3s ease;
+}
+.step-line.active { background: var(--gold-gradient); }
+
+/* ── Auth Select & Textarea ── */
+.auth-select {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  color: var(--text-h);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  width: 100%;
+  cursor: pointer;
+}
+.auth-select:focus { border-color: rgba(212,175,55,0.5); }
+.auth-select option { background: #111113; color: var(--text-h); }
+
+.auth-textarea {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  color: var(--text-h);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  padding: 12px 16px;
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+  width: 100%;
+}
+.auth-textarea:focus { border-color: rgba(212,175,55,0.5); }
+.auth-textarea::placeholder { color: var(--text-muted); }
+
+/* ── Step 2 back+next actions ── */
+.step2-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+.step2-actions .btn-outline { flex-shrink: 0; padding: 15px 20px; }
+
+/* ── OTP Step ── */
+.otp-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; background: var(--gold-dim);
+  border: 1px solid rgba(212,175,55,0.2); border-radius: 3px;
+  margin-bottom: 4px;
+}
+.otp-icon { font-size: 24px; flex-shrink: 0; }
+.otp-header p { font-size: 13px; color: var(--text); line-height: 1.6; }

@@ -28,6 +28,15 @@ export default function Footer({ onNavigate }) {
         </div>
 
         <div className="footer-links">
+          <h4>Trust</h4>
+          <ul>
+            {[['Why Trust Us','trust'],['Authentication Process','trust'],['Customer Reviews','trust'],['Security & Payments','trust']].map(([label, pg]) => (
+              <li key={label} onClick={() => onNavigate(pg)}>{label}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="footer-links">
           <h4>Support</h4>
           <ul>
             {[['Authentication Policy','help'],['Returns & Refunds','help'],['Contact Us','help'],['Shipping Info','help']].map(([label, pg]) => (

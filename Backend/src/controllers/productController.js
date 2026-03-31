@@ -16,10 +16,11 @@ const getProducts = async (req, res) => {
     if (search) filter.name = { $regex: search, $options: 'i' };
 
     let sortOption = {};
-    if (sort === 'price-asc')   sortOption = { price: 1 };
-    if (sort === 'price-desc')  sortOption = { price: -1 };
-    if (sort === 'newest')      sortOption = { createdAt: -1 };
-    if (sort === 'top-rated')   sortOption = { rating: -1 };
+    if (sort === 'price-asc')    sortOption = { price: 1 };
+    if (sort === 'price-desc')   sortOption = { price: -1 };
+    if (sort === 'newest')       sortOption = { createdAt: -1 };
+    if (sort === 'top-rated')    sortOption = { rating: -1 };
+    if (sort === 'luxury-score') sortOption = { luxuryScore: -1 };
 
     const products = await Product.find(filter).sort(sortOption);
     res.json(products);

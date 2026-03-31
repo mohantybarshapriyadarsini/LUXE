@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { getProductById, addReview } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { priceINR } from '../utils/currency';
+import TrustBadges from '../components/TrustBadges';
 import './ProductDetail.css';
 
 export default function ProductDetail({ productId, onNavigate, onAddToCart, onToggleWishlist, isInWishlist }) {
@@ -94,6 +95,7 @@ export default function ProductDetail({ productId, onNavigate, onAddToCart, onTo
                 </button>
               )}
             </div>
+            <TrustBadges />
           </div>
         </div>
 

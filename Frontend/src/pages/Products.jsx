@@ -4,8 +4,8 @@ import { priceINR } from '../utils/currency';
 import ProductCard from '../components/ProductCard';
 import './Products.css';
 
-const BRANDS     = ['All','Louis Vuitton','Chanel','Hermès','Rolex','Gucci','Prada'];
-const CATEGORIES = ['All','Handbags','Watches','Jewellery','Shoes','Accessories'];
+const BRANDS     = ['All','Louis Vuitton','Chanel','Hermès','Rolex','Gucci','Prada','Dyson'];
+const CATEGORIES = ['All','Handbags','Watches','Jewellery','Shoes','Accessories','Electronics'];
 const SORTS = [
   { value: 'default',    label: 'Default' },
   { value: 'price-asc',  label: 'Price: Low to High' },
@@ -24,6 +24,7 @@ const PRICE_PRESETS = [
 export default function Products({ onNavigate, onAddToCart, onToggleWishlist, isInWishlist, initialBrand, initialCategory }) {
   const [products,       setProducts]       = useState([]);
   const [loading,        setLoading]        = useState(true);
+  const [fetchError,     setFetchError]     = useState('');
   const [activeBrand,    setActiveBrand]    = useState(initialBrand || 'All');
   const [activeCategory, setActiveCategory] = useState(initialCategory || 'All');
   const [sort,           setSort]           = useState('default');
@@ -42,8 +43,8 @@ export default function Products({ onNavigate, onAddToCart, onToggleWishlist, is
     if (maxPrice)                 params.maxPrice = maxPrice;
     if (search)                   params.search   = search;
     getProducts(params)
-      .then(setProducts)
-      .catch(() => setProducts([]))
+      .then(data => { console.log('Products fetched:', data.length); setFetchError(''); setProducts(data); })
+      .catch(err => { console.error('Products fetch error:', err.message); setFetchError(err.message); setProducts([]); })
       .finally(() => setLoading(false));
   }, [activeBrand, activeCategory, sort, minPrice, maxPrice, search]);
 
@@ -230,6 +231,12 @@ export default function Products({ onNavigate, onAddToCart, onToggleWishlist, is
             {loading ? (
               <div className="products-grid-page">
                 {[...Array(8)].map((_, i) => <div key={i} className="skeleton-card-page" />)}
+              </div>
+            ) : fetchError ? (
+              <div className="empty-state">
+                <p style={{ color: '#e05555' }}>⚠ Could not load products: {fetchError}</p>
+                <p style={{ fontSize: '12px', marginTop: '8px' }}>Make sure the backend is running at the correct URL.</p>
+                <button className="btn btn-outline" onClick={fetchProducts} style={{ marginTop: '16px' }}>Retry</button>
               </div>
             ) : products.length > 0 ? (
               <div className="products-grid-page">

@@ -1,0 +1,54 @@
+.live-feed {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(16, 16, 18, 0.95);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 4px;
+  padding: 12px 18px;
+  max-width: 320px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  backdrop-filter: blur(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.live-feed.show { opacity: 1; transform: translateY(0); }
+.live-feed.hide { opacity: 0; transform: translateY(8px); }
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #27ae60;
+  flex-shrink: 0;
+  animation: livePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(39,174,96,0.5); }
+  50%       { box-shadow: 0 0 0 6px rgba(39,174,96,0); }
+}
+
+.live-text {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.live-text strong { color: var(--text-h); }
+
+.live-time {
+  display: block;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 480px) {
+  .live-feed { left: 12px; right: 12px; max-width: none; bottom: 16px; }
+}

@@ -1,27 +1,38 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const bcrypt   = require('bcryptjs');
 
 const addressSchema = new mongoose.Schema({
-  fullName: String,
-  phone: String,
-  street: String,
-  city: String,
-  state: String,
-  zipCode: String,
-  country: String,
-  isDefault: { type: Boolean, default: false }
+  fullName:  String,
+  phone:     String,
+  street:    String,
+  city:      String,
+  state:     String,
+  zipCode:   String,
+  country:   String,
+  isDefault: { type: Boolean, default: false },
 });
 
 const buyerSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true, trim: true },
-    email: { type: String, required: true, unique: true, lowercase: true },
+    // Basic
+    name:     { type: String, required: true, trim: true },
+    email:    { type: String, required: true, unique: true, lowercase: true },
     password: { type: String, required: true, minlength: 6 },
-    phone: { type: String, default: '' },
-    avatar: { type: String, default: '' },
+    phone:    { type: String, required: true, default: '' },
+
+    // Extended Profile
+    dateOfBirth:     { type: String, default: '' },
+    gender:          { type: String, enum: ['Male', 'Female', 'Other', 'Prefer not to say', ''], default: '' },
+    city:            { type: String, default: '' },
+    state:           { type: String, default: '' },
+    pincode:         { type: String, default: '' },
+    country:         { type: String, default: 'India' },
+    profileComplete: { type: Boolean, default: false },
+
+    avatar:    { type: String, default: '' },
     addresses: [addressSchema],
-    wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
-    isActive: { type: Boolean, default: true }
+    wishlist:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
+    isActive:  { type: Boolean, default: true },
   },
   { timestamps: true }
 );

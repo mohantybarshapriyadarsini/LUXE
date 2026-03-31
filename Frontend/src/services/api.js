@@ -1,4 +1,5 @@
-const BASE = '/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const BASE = `${API_URL}/api`;
 
 function authHeaders() {
   const token = localStorage.getItem('luxe_token');
@@ -46,5 +47,22 @@ export const addReview           = (id, data) => request('POST', `/products/${id
 export const createOrder      = (data)       => request('POST', '/orders', data);
 export const getMyOrders      = ()           => request('GET',  '/orders/my');
 export const getOrderById     = (id)         => request('GET',  `/orders/${id}`);
-export const verifyPayment    = (id, data)   => request('POST', `/orders/${id}/verify-payment`, data);
 export const requestRefund    = (id, reason) => request('POST', `/orders/${id}/refund`, { reason });
+
+// Razorpay — new endpoints only
+export const createRazorpayOrder  = (data) => request('POST', '/orders/razorpay/create', data);
+export const verifyRazorpayPayment = (data) => request('POST', '/orders/razorpay/verify', data);
+
+// Brand (Saler)
+export const registerBrand = (data) => request('POST', '/salers/register', data);
+export const loginBrand    = (data) => request('POST', '/salers/login', data);
+export const getBrandProfile = ()   => request('GET',  '/salers/profile');
+
+// Admin
+export const loginAdmin         = (data)         => request('POST', '/admin/login', data);
+export const getAdminDashboard  = ()             => request('GET',  '/admin/dashboard');
+export const getAdminOrders     = ()             => request('GET',  '/admin/orders');
+export const updateOrderStatus  = (id, data)     => request('PUT',  `/admin/orders/${id}/status`, data);
+export const handleRefundAdmin  = (id, action)   => request('PUT',  `/admin/orders/${id}/refund`, { action });
+export const getAdminBuyers     = ()             => request('GET',  '/admin/buyers');
+export const sendTrackingMessage= (orderId, message) => request('POST', '/admin/send-message', { orderId, message });

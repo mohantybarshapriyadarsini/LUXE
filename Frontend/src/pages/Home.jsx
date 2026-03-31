@@ -80,7 +80,7 @@ export default function Home({ onNavigate, onAddToCart, onToggleWishlist, isInWi
           <p className="section-label" style={{ textAlign: 'center' }}>Shop by Category</p>
           <div className="divider" />
           <div className="categories-grid">
-            {[['Handbags','👜'],['Watches','⌚'],['Jewellery','💎'],['Shoes','👠'],['Accessories','🧣']].map(([cat, icon]) => (
+            {[['Handbags','👜'],['Watches','⌚'],['Jewellery','💎'],['Shoes','👠'],['Accessories','🧣'],['Electronics','🔌']].map(([cat, icon]) => (
               <button key={cat} className="category-card" onClick={() => onNavigate('products', { category: cat })}>
                 <span className="cat-icon">{icon}</span>
                 <span className="cat-name">{cat}</span>
@@ -98,6 +98,7 @@ export default function Home({ onNavigate, onAddToCart, onToggleWishlist, isInWi
             <h2>Zero Tolerance<br />for Fakes</h2>
             <p>Every item listed on LUXE undergoes a rigorous multi-point authentication process by our team of certified luxury goods experts.</p>
             <p style={{ marginTop: '16px' }}>If an item ever fails authentication after purchase, we offer a full refund — no questions asked.</p>
+            <button className="btn btn-outline" style={{ marginTop: '32px' }} onClick={() => onNavigate('trust')}>See How We Authenticate →</button>
           </div>
           <div className="promise-stats">
             {[['100%','Authenticated'],['50+','Luxury Brands'],['0','Counterfeits']].map(([num, label]) => (

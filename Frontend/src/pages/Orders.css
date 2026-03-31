@@ -76,3 +76,28 @@
   .order-footer { flex-direction: column; align-items: flex-start; }
   .order-footer-right { align-items: flex-start; }
 }
+
+/* Tracking History */
+.tracking-history {
+  padding: 16px 28px 20px;
+  border-top: 1px solid var(--border);
+  background: rgba(212,175,55,0.02);
+}
+.tracking-label {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 12px;
+}
+.tracking-entry {
+  display: grid; grid-template-columns: 100px 1fr auto;
+  gap: 12px; align-items: start; padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 12px;
+}
+.tracking-entry:last-child { border-bottom: none; }
+.tracking-status {
+  font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--gold); background: var(--gold-dim);
+  padding: 3px 8px; border-radius: 2px; white-space: nowrap;
+  align-self: flex-start;
+}
+.tracking-msg  { color: var(--text); line-height: 1.6; }
+.tracking-time { font-size: 10px; color: var(--text-muted); white-space: nowrap; }

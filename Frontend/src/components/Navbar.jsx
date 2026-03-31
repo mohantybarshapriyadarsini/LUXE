@@ -32,7 +32,7 @@ export default function Navbar({ cartCount, wishlistCount, onNavigate }) {
         <button className="nav-logo" onClick={() => onNavigate('home')}>LUXE</button>
 
         <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
-          {[['home','Home'],['products','Collections'],['help','Help Center']].map(([pg, label]) => (
+          {[['home','Home'],['products','Collections'],['trust','Why Trust Us'],['help','Help Center']].map(([pg, label]) => (
             <button key={pg} className="nav-link" onClick={() => { onNavigate(pg); setMenuOpen(false); }}>
               {label}<span className="nav-underline" />
             </button>

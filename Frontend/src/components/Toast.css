@@ -1,0 +1,87 @@
+.toast-container {
+  position: fixed;
+  bottom: 32px;
+  right: 28px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 300px;
+  max-width: 360px;
+  padding: 14px 16px;
+  border-radius: 4px;
+  background: rgba(16, 16, 18, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  pointer-events: all;
+  animation: toastIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.toast.removing {
+  animation: toastOut 0.3s ease forwards;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(60px) scale(0.92); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateX(0) scale(1); }
+  to   { opacity: 0; transform: translateX(60px) scale(0.92); }
+}
+
+/* Types */
+.toast-wishlist-add    { border: 1px solid rgba(212,175,55,0.35); border-left: 3px solid var(--gold); }
+.toast-wishlist-remove { border: 1px solid rgba(224,85,85,0.3);   border-left: 3px solid #e05555; }
+.toast-cart            { border: 1px solid rgba(74,158,255,0.3);  border-left: 3px solid #4a9eff; }
+.toast-success         { border: 1px solid rgba(39,174,96,0.3);   border-left: 3px solid #27ae60; }
+.toast-error           { border: 1px solid rgba(224,85,85,0.3);   border-left: 3px solid #e05555; }
+
+.toast-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.toast-body { flex: 1; }
+
+.toast-title {
+  font-size: 13px;
+  color: var(--text-h);
+  font-weight: 500;
+  margin-bottom: 2px;
+  font-family: var(--sans);
+}
+
+.toast-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+  line-height: 1;
+}
+.toast-close:hover { color: var(--text-h); }
+
+@media (max-width: 480px) {
+  .toast-container { right: 12px; left: 12px; bottom: 16px; }
+  .toast { min-width: unset; max-width: 100%; }
+}
